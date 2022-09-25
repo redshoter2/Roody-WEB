@@ -1,0 +1,14 @@
+.quantity input {
+    width: 30px;
+    padding: 1px;
+    text-align: center;
+    border: 1px solid #dce4ec;
+  }
+  .btn-quantity {
+    margin-bottom: 1px;
+  }
+  
+  .logo {
+      text-align: center;
+      margin: 10px;
+  }

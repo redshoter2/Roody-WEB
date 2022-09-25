@@ -1,0 +1,721 @@
+<html lang="en"><head>
+    <link href="../css/tienda/google-2.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../images/roody.png">
+    <title>Roody | NIVELES</title>
+
+    <link rel="stylesheet" href="../css/tienda/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/tienda/lumen.min.css">
+    <link rel="stylesheet" href="../css/tienda/store.min.css">
+    <link href="../css/tienda/google-1.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/micromodal@0.4.2/dist/micromodal.min.js" integrity="sha256-PqiFpvu2HsnOnyZqaH8tYA9wJrlyxK4nNR7sPpzzev4=" crossorigin="anonymous"></script>
+    <script src="../js/tienda/clipboard.min.js"></script>
+    
+    <link rel="stylesheet" href="../css/web/all.min.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/tienda/style.css">
+    
+    <script src="https://kit.fontawesome.com/db3e18025d.js" crossorigin="anonymous"></script>
+    
+        <style>
+        #header .logo-row .logo {
+            margin: 0 0 -12% 0;
+        }
+
+        .panel, nav.navbar .navbar-collapse {
+            border-radius: 6px;
+            box-shadow: 0 4px 0 #1e79d8;
+        }
+
+        .btn:not(.btn-danger) {
+             box-shadow: 0 -3px 0 rgba(0, 0, 0, .1) inset;
+        }
+        
+        .category .packages-image .package .info .text, .modal__container, .cartModal-item {
+            border-radius: 6px;
+        }
+        
+        body[data-layout="3"] .index-sidebar > .panel:nth-child(-n+4) {
+            box-shadow: 0 4px 0 hsla(210, 31%, 80%, .86);
+        }
+        
+                .body > div:first-child .panel-heading:first-of-type {
+            background-color: var(--neutral2);
+        }
+
+        .body > div:first-child .panel-heading:first-of-type + .panel-body {
+            padding-top: 24px;
+        }
+        
+        .panel.decus-user-module {
+            background-color: var(--neutral2);
+            box-shadow: 0 4px 0 hsla(210, 31%, 80%, .86);
+        }
+            </style>
+    
+    <script>
+        function onModalOpen(modal) {
+            $("body").addClass("modal-open");
+        }
+        
+        function onModalClose(modal) {
+            modal.addEventListener("animationend", () => {
+                $("body").removeClass("modal-open");
+            }, {once: true});
+        }
+        
+        let modalConfig = {
+            onShow: onModalOpen,
+            onClose: onModalClose,
+            disableFocus: true,
+            awaitOpenAnimation: true,
+            awaitCloseAnimation: true
+        }
+        
+        function fade(elem, dir, options) {
+            const anims = getComputedStyle(elem).getPropertyValue("animation");
+            const {duration, delay, callback} = options;
+            if(callback) {
+                elem.addEventListener("animationend", callback, {once: true});
+            }
+
+            elem.style.animation = (anims ? anims + ", " : "") + `fadeOut ${duration} ${delay} both ${dir == "in" ? "reverse" : ""}`;
+            
+        }
+        
+        const parser = new DOMParser();
+        const origin = location.origin;
+        let ign;
+        let basket;
+        
+        let basketFetch = fetch(origin + '/checkout/basket')
+        .then(res => res.text())
+        .then(text => {
+            const html = parser.parseFromString(text, "text/html");
+            ign = html.documentElement.querySelector("#ign").innerHTML;
+            basket = JSON.parse(html.documentElement.querySelector("#basket").innerHTML);
+        });
+        
+        function htmlToElement(html) {
+            var template = document.createElement('template');
+            html = html.trim();
+            template.innerHTML = html;
+            return template.content;
+        }
+    </script>
+    
+        
+    </head>
+
+<body data-layout="1">
+
+    <!-- header -->
+   
+    <header id="header" style="background-image: linear-gradient(0deg, hsla(160, 51%, 49%, .1), hsla(160, 51%, 49%, .1));">
+        <div class="p-head-inner">
+            <nav data-mobile="false">
+                <div class="decus-mobile-menu-wrapper">
+                    <div class="decus-mobile-menu">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="nav-left">
+                    <div class="go-back"><a href="../index.html" type="button" class="item"><span class="fas fa-arrow-left"></span> Volver</a>
+                    </div>
+                </div>
+    
+                <div class="nav-middle">
+                    <div class="left">
+                        <a class="item" href="../index.html">Inicio</a>
+                        <a class="item" href="../foro.html">Foro</a>
+                    </div>
+                    <div class="storeBtn-container">
+                        <a class="item highlight" href="../tienda.html">TIENDA</a>
+                    </div>
+                    <div class="right">
+                        <a class="item" href="../becas.html">Becas</a>
+                        <a class="item" href="../staff-apply.html">Staff Apply</a>
+                    </div>
+                </div>
+    
+                <div class="nav-right"></div>
+            </nav>
+    
+            <div class="logo-row">
+                <div class="logo-row-inner">
+                    <div class="play">
+                        <div class="play-inner play-clip toggle-tooltip" data-clipboard-text="Próximamente" data-original-title="Copy IP">
+                            <div class="text">
+                                <span class="top" id="server-ip">
+                                    Próximamente
+                                </span>
+                                <span class="bottom">
+                                </span>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="logo">
+                    <a href="#">
+                        <img height="150px" width="370" src="../images/roody.gif">
+                    </a>
+                    </div>
+                    <div class="discord-container">
+                        <a href="https://discord.gg/jc8es8KvWc" target="_blank">
+                            <div class="discord">
+                                <div class="text">
+                                    <span class="top">
+                                     discord
+                                    </span>
+                                    <span class="bottom">
+                                        Hay <span id="discord-count"></span> conectados
+                                    </span>
+                                </div>
+                                <div class="icon">
+                                    <i class="fab fa-discord"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="curve-container">
+            <svg class="curve" xmlns="http://www.w3.org/2000/svg" width="1440" height="40" viewBox="0 0 1440 40">
+                <path d="M0,27.01C239.659,7,479.143,0,718.453,0S1198.28,7,1440,27.01V40H0Z" fill-rule="evenodd"></path>
+            </svg>
+        </div>
+    </header>
+        
+    <!-- content -->
+    <div class="decus-wrapper">
+                
+        <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">INICIO</a></li>
+                                                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                BOTS
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" style="border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);border-radius:8px;box-shadow:0 6px 12px rgb(0 0 0 / 18%);background-clip: padding-box;">
+                                                                    <li><a href="./niveles.html">NIVELES</a></li>
+                                                                    <li><a href="./roody.html">ROODY</a></li>
+                                                            </ul>
+                        </li>
+                                                                                <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                MÚSICA
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" style="border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);border-radius:8px;box-shadow:0 6px 12px rgb(0 0 0 / 18%);background-clip: padding-box;">
+                                                                    <li><a href="./musica.html">PAQUETES</a></li>
+                                                            </ul>
+                        </li>
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            ROLES
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="border: 1px solid #cccccc;
+border: 1px solid rgba(0, 0, 0, 0.15);
+border-radius: 4px;-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);border-radius:8px;box-shadow:0 6px 12px rgb(0 0 0 / 18%);background-clip: padding-box;">
+                                                                                                                                    <li><a href="./roles.html">ROLES</a></li>
+                                                        </ul>
+                    </li>
+                                                                                <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Próximamente
+                                <span class="caret"></span>
+                            </a>
+</nav>        
+                
+            <div class="body">
+		<div class="content">
+			            
+			<div class="panel panel-default">
+									<div class="panel-heading">MEJORAR RANGO</div>
+								<div class="panel-body">
+										    <div class="category">
+    						    						    <div class="packages-image">
+        							        							    <div class="package">
+                                            <div class="image">
+                                                <a href="javascript:void(0);" class="package-modal-trigger" data-package-id="486400">
+                                                    <img src="../images/vlf8lpi5qy7co1klozke-1.png" style="height: 50%" class="img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="info">
+                                              <div class="text">
+                                                <div class="name">CLIENTE</div>
+                                                <div class="main-info">
+                                                    <div class="price">
+                                                                                                                    <del class="discount">2</del>
+                                                            1,50
+                                                                                                                EUR
+            										</div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+        							        							    <div class="package">
+                                            <div class="image">
+                                                <a href="javascript:void(0);" class="package-modal-trigger" data-package-id="486397">
+                                                    <img src="../images/vlf8lpi5qy7co1klozke-1.png" style="height: 50%" class="img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="info">
+                                              <div class="text">
+                                                <div class="name">CLIENTE PREMIUM</div>
+                                                <div class="main-info">
+                                                    <div class="price">
+                                                                                                                    <del class="discount">13</del>
+                                                            12,70
+                                                                                                                EUR
+            										</div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+        							        						</div>
+    						    					</div>
+									</div>
+			</div>
+		</div>
+	        
+	    <div>
+    
+                            
+                
+                
+                
+
+                                            
+                
+                                    <div class="panel panel-default">
+		<div class="panel-heading">¿ERES PADRE?</div>
+    <div class="panel-body">
+            <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            
+							<p style="font-size:14px;">	Conozca un poco acerca de nosotros y de nuestro servidor en este <a href="#" class="enlace-padres">enlace.</a></p>
+
+                        </div>
+                    </div>
+            </div>
+    </div>
+</div>                
+
+                
+                
+                
+                
+                
+                
+                                    </div>
+        	</div>
+	
+<div class="modal micromodal-slide" id="package486400" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__container" role="dialog" aria-modal="true">
+            <div class="modal__header">
+                <h4 class="modal__title">Cliente</h4>
+                <button type="button" class="close" data-micromodal-close="">×</button>
+            </div>
+            <div class="modal__content">
+                <p>
+                    </p><h3 style="text-align: center;"><strong><span style="color: rgb(242, 195, 20);">CLIENTE</span></strong></h3>
+<p style="text-align: center;"><strong><span style="color: rgb(192, 80, 77);"><span style="font-size: 14px;">INCLUYE VENTAJAS DE LOS ROLES CLIENTE Y CLIENTE PREMIUM.</span></span></strong><br></p>
+<p><strong><strong><span font-family:calibri,="" style="color: rgb(118, 146, 60);"><span style="color: rgb(0, 0, 0);"><u>Globales:</u></span></span></strong></strong></p>
+<p>Rol especial<br><strong><u><br><br>¿Que ofrecemos?:</u></strong><br>Más posibilidades para ganar sorteos<br>Acceso a canales exclusivos<br>Acceso a comandos Exclusivos para clientes<br>Atención exclusiva para resolver tus dudas rápidamente<br>Anticipaciones sobre nuevos anuncios<br>Descuentos de un 10%</p>
+<p><br></p>
+                <p></p>
+            </div>
+            <div class="modal__footer modal-footer">
+                <div class="package-modal-price">
+                    <p>
+                                                <del class="discount">2</del>
+                        1,50
+                                                <small>EUR</small>
+                    </p>
+                </div>
+                <div class="package-modal-actions">
+                                            <a href="/package/486400" class="package-configure-prompt">
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="package486397" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__container" role="dialog" aria-modal="true">
+            <div class="modal__header">
+                <h4 class="modal__title">Cliente Premium</h4>
+                <button type="button" class="close" data-micromodal-close="">×</button>
+            </div>
+            <div class="modal__content">
+                <p>
+                </p><h3 style="text-align: center;"><strong><span style="color: rgb(242, 195, 20);">CLIENTE PREMUM</span></strong></h3>
+<p style="text-align: center;"><strong><span style="color: rgb(192, 80, 77);"><span style="font-size: 14px;">INCLUYE VENTAJAS DE LOS ROLES CLIENTE Y CLIENTE PREMIUM.</span></span></strong><br></p>
+<p><strong><strong><span font-family:calibri,="" style="color: rgb(118, 146, 60);"><span style="color: rgb(0, 0, 0);"><u>Globales:</u></span></span></strong></strong></p>
+<p>Rol especial<br><strong><u><br><br>¿Que ofrecemos?:</u></strong><br>Más posibilidades para ganar sorteos<br>Acceso a canales exclusivos<br>Acceso a comandos Exclusivos para clientes<br>Atención exclusiva para resolver tus dudas rápidamente<br>Anticipaciones sobre nuevos anuncios<br>Apareces más exclusivamente en la barra lateral<br>Códigos personalizados exclusivos<br>Descuentos de un 20% en toda la tienda de Roody</p>
+<p><br></p>
+            <p></p>
+            </div>
+            <div class="modal__footer modal-footer">
+                <div class="package-modal-price">
+                    <p>
+                                                <del class="discount">10</del>
+                        3,75
+                                                <small>EUR</small>
+                    </p>
+                </div>
+                <div class="package-modal-actions">
+                                            <a href="/package/486397" class="package-configure-prompt">
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="package486403" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__container" role="dialog" aria-modal="true">
+            <div class="modal__header">
+                <h4 class="modal__title">Paquete 3</h4>
+                <button type="button" class="close" data-micromodal-close="">×</button>
+            </div>
+            <div class="modal__content">
+                <p>
+                </p><h3 style="text-align: center;"><strong><span style="color: rgb(242, 195, 20);">PAQUETE 3</span></strong></h3>
+<p style="text-align: center;"><strong><span style="color: rgb(192, 80, 77);"><span style="font-size: 14px;">INCLUYE VENTAJAS DE LOS ROLES CLIENTE Y CLIENTE PREMIUM.</span></span></strong><br></p>
+<p><strong><strong><span font-family:calibri,="" style="color: rgb(118, 146, 60);"><span style="color: rgb(0, 0, 0);"><u>Globales:</u></span></span></strong></strong></p>
+<p>Códigos NO personalizados<strong><u><br><br>¿Qué Precios tenemos?:</u></strong><br>Primer Mes: 10 euros<br> Meses consecuentes: 2 Euros<br>Contrato por 1 Año<br>Pago en una sola Exhibición<br>Cancela con 1 Mes de anticipación<strong><u><br><br>¿Que datos necesitamos?:</u></strong><br>ID del bot<br>Token del Bot<br>Idioma del Bot<br><strong><u><br><br>¿Que datos te daremos?:</u></strong><br>El bot SIN CÓDIGO hosteado en una VPS<br>Todo el sistema de música<br>Rol exclusivo<br></p>
+<p><br></p>
+            <p></p>
+            </div>
+            <div class="modal__footer modal-footer">
+                <div class="package-modal-price">
+                    <p>
+                                                <del class="discount">10</del>
+                        2
+                                                <small>EUR</small>
+                    </p>
+                </div>
+                <div class="package-modal-actions">
+                                            <a href="/package/486403" class="package-configure-prompt">
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="package486704" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__container" role="dialog" aria-modal="true">
+            <div class="modal__header">
+                <h4 class="modal__title">Paquete 4</h4>
+                <button type="button" class="close" data-micromodal-close="">×</button>
+            </div>
+            <div class="modal__content">
+                <p>
+                </p><h3 style="text-align: center;"><strong><span style="color: rgb(242, 195, 20);">PAQUETE 4</span></strong></h3>
+<p style="text-align: center;"><strong><span style="color: rgb(192, 80, 77);"><span style="font-size: 14px;">INCLUYE VENTAJAS DE LOS ROLES CLIENTE Y CLIENTE PREMIUM.</span></span></strong><br></p>
+<p><strong><strong><span font-family:calibri,="" style="color: rgb(118, 146, 60);"><span style="color: rgb(0, 0, 0);"><u>Globales:</u></span></span></strong></strong></p>
+<p>Códigos NO personalizados<strong><u><br><br>¿Qué Precios tenemos?:</u></strong><br>Primer Mes: 10 euros<br> Meses consecuentes: 1,50 Euros<br>Contrato por 1 Año y 1 Mes<br>Pago en una sola Exhibición<br>Cancela con 3 Meses de anticipación<strong><u><br><br>¿Que datos necesitamos?:</u></strong><br>ID del bot<br>Token del Bot<br>Idioma del Bot<br><strong><u><br><br>¿Que datos te daremos?:</u></strong><br>El bot SIN CÓDIGO hosteado en una VPS<br>Todo el sistema de música<br>Rol exclusivo<br></p>
+<p><br></p>
+            <p></p>
+            </div>
+            <div class="modal__footer modal-footer">
+                <div class="package-modal-price">
+                    <p>
+                                                <del class="discount">10</del>
+                        1,50
+                                                <small>EUR</small>
+                    </p>
+                </div>
+                <div class="package-modal-actions">
+                                            <a href="/package/486406" class="package-configure-prompt">
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal micromodal-slide" id="package486421" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__container" role="dialog" aria-modal="true">
+            <div class="modal__header">
+                <h4 class="modal__title">Nivel 5</h4>
+                <button type="button" class="close" data-micromodal-close="">×</button>
+            </div>
+            <div class="modal__content">
+                <p>
+                </p><h3 style="text-align: center;"><strong><span style="color: rgb(242, 195, 20);">NIVEL 5</span></strong></h3>
+<p style="text-align: center;"><strong><span style="color: rgb(192, 80, 77);"><span style="font-size: 14px;">INCLUYE VENTAJAS DE LOS ROLES CLIENTE Y CLIENTE PREMIUM.</span></span></strong><br></p>
+<p><strong><strong><span font-family:calibri,="" style="color: rgb(118, 146, 60);"><span style="color: rgb(0, 0, 0);"><u>Globales:</u></span></span></strong></strong></p>
+<p>Códigos NO personalizados<strong><u><br><br>¿Que ofrecemos?:</u></strong><br>Comandos Mejores respecto al nivel 4<br>Acceso a canales exclusivos<br>Rol de Cliente<br>Descuentos Personalizados<br>Código Básico<br>Apareces más arriba en la barra lateral del Discord<br>Command Handler y SlashCommand Handler<br></p>
+<p><br></p>
+            <p></p>
+            </div>
+            <div class="modal__footer modal-footer">
+                <div class="package-modal-price">
+                    <p>
+                                                <del class="discount">11</del>
+                        10
+                                                <small>EUR</small>
+                    </p>
+                </div>
+                <div class="package-modal-actions">
+                                            <a href="/package/486406" class="package-configure-prompt">
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="package486469" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__container" role="dialog" aria-modal="true">
+            <div class="modal__header">
+                <h4 class="modal__title">Nivel 6</h4>
+                <button type="button" class="close" data-micromodal-close="">×</button>
+            </div>
+            <div class="modal__content">
+                <p>
+                    </p><h3 style="text-align: center;"><strong><span font-family:calibri,="" style="color: rgb(75, 172, 198);">NIVEL 6</span></strong></h3>
+<p style="text-align: center;"><strong><strong><span style="color: rgb(192, 80, 77);"><span style="font-size: 14px;">TAMBIÉN INCLUYE LAS VENTAJAS DE LOS RANGOS ANTERIORES Y DE LOS CLIENTES</span></span></strong><br></strong><br></p>
+<p><strong><strong><u>Global:</u></strong><br>Códigos NO personalizados<strong><u><br><br>¿Que ofrecemos?:</u></strong><br>Comandos Mejores respecto al nivel 5<br>Acceso a canales exclusivos<br>Rol de Cliente<br>Descuentos Personalizados<br>Código Básico<br>Apareces más arriba en la barra lateral del Discord<br>Command Handler y SlashCommand Handler<br>Prioridad en tickets por parte del staff<br></p>
+
+
+                <p></p>
+            </div>
+            <div class="modal__footer modal-footer">
+                <div class="package-modal-price">
+                    <p>
+                                                <del class="discount">16,50</del>
+                        15
+                                                <small>EUR</small>
+                    </p>
+                </div>
+                <div class="package-modal-actions">
+                                            <a href="/package/486469" class="package-configure-prompt">
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="package486472" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__container" role="dialog" aria-modal="true">
+            <div class="modal__header">
+                <h4 class="modal__title">Nivel 7</h4>
+                <button type="button" class="close" data-micromodal-close="">×</button>
+            </div>
+            <div class="modal__content">
+                <p>
+                </p><h3 style="text-align: center;"><strong><span font-family:calibri,="" style="color: rgb(17, 0, 255);">NIVEL 7</span></strong></h3>
+<p style="text-align: center;"><strong><strong><span style="color: rgb(192, 80, 77);"><span style="font-size: 14px;">TAMBIÉN INCLUYE LAS VENTAJAS DE LOS RANGOS ANTERIORES Y DE LOS CLIENTES</span></span></strong><br></strong><br></p>
+<p><strong><strong><u>Global:</u></strong><br>Códigos NO personalizados<strong><u><br><br>¿Que ofrecemos?:</u></strong><br>Comandos Mejores respecto al nivel 5<br>Acceso a canales exclusivos<br>Rol de Cliente<br>Descuentos Personalizados<br>Código Básico<br>Apareces más arriba en la barra lateral del Discord<br>Command Handler y SlashCommand Handler<br>Prioridad en tickets por parte del staff<br></p>
+
+
+            <p></p>
+            </div>
+            <div class="modal__footer modal-footer">
+                <div class="package-modal-price">
+                    <p>
+                                                <del class="discount">+15</del>
+                        Abrir Ticket
+                                                <small>(EUR)</small>
+                    </p>
+                </div>
+                <div class="package-modal-actions">
+                                            <a href="/package/486472" class="package-configure-prompt">
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="package-configure" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__container" role="dialog" aria-modal="true">
+            <div class="modal__header">
+                <h4 class="modal__title"></h4>
+                <button type="button" class="close" data-micromodal-close="">×</button>
+            </div>
+            <form method="POST" accept-charset="UTF-8">
+            <div class="modal__content">
+                <div id="login-wrapper"></div>
+                <div id="variables-wrapper"></div>
+            </div>
+            <div class="modal__footer modal-footer">
+                <div class="package-modal-actions">
+                    <button type="submit" name="type" value="checkout" class="btn btn-primary btn-block"><i class="fa fa-shopping-cart"></i> Carrito</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.createTemplateTagFirstArg=function(a){return a.raw=a};$jscomp.createTemplateTagFirstArgWithRaw=function(a,b){a.raw=b;return a};
+var login_form='<p class="configure-input-title">Nick de Minecraft</p><input name="mc_name" placeholder="Nick de MC" class="form-control" type="text" required />',input_template=function(a){return'<div class="variable"><p class="configure-input-title">'+a.name+'</p><input type="text" name="variables['+a.id+']" placeholder="'+a.placeholder+'" class="form-control" required /></div>'},configure_modal=document.querySelector("#package-configure"),configure_modal_title=document.querySelector("#package-configure .modal__title"),
+configure_modal_variables=document.querySelector("#variables-wrapper"),configure_modal_login=document.querySelector("#login-wrapper"),configure_modal_form=document.querySelector("#package-configure form");document.querySelectorAll(".package-modal-trigger").forEach(function(a){return a.addEventListener("click",function(a){a.preventDefault();a.stopImmediatePropagation();MicroModal.show("package"+this.getAttribute("data-package-id"),modalConfig)})});
+document.querySelectorAll(".package-configure-prompt").forEach(function(a){return a.addEventListener("click",function(a){a.preventDefault();a.stopImmediatePropagation();var b=document.querySelector("#loader-overlay");MicroModal.close($(this).closest(".modal").attr("id"));b.style.animation="fadeOut .3s .3s cubic-bezier(0.0, 0.0, 0.2, 1) both reverse";a=$(this).attr("href");var c;fetch(a).then(function(a){return a.text()}).then(function(a){a=(new DOMParser).parseFromString(a,"text/html");c=JSON.parse(a.documentElement.querySelector("#package-data").innerHTML);
+return{ign:ign,item:c}}).then(function(a){var c=a.ign,d=a.item;!c||d.variables.length?(resetConfigureData(),configureSetup(a),b.style.animation="fadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1) both",MicroModal.show("package-configure",modalConfig)):$.ajax({url:"/checkout/"+d.id,type:"post",data:{ign:c},datatype:"json",success:function(){b.innerHTML="<div class='tick-mark'></div>";location.assign(origin+"/checkout/basket")}})})})});
+function configureSetup(a){var b=a.item;a.ign||(configure_modal_login.innerHTML=login_form,b.variables.length||(configure_modal_title.innerHTML="Logueate para continuar"));b.variables.length&&(a=b.variables.reduce(function(a,b){return a+input_template(b)},""),configure_modal_title.innerHTML="Configure "+b.name,configure_modal_variables.innerHTML=a);configure_modal_form.setAttribute("action","/checkout/"+b.id)}
+function resetConfigureData(){configure_modal_form.setAttribute("action","");configure_modal_title.innerHTML="";configure_modal_login.innerHTML="";configure_modal_variables.innerHTML=""};
+</script>
+
+        <script>
+            var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.createTemplateTagFirstArg=function(a){return a.raw=a};$jscomp.createTemplateTagFirstArgWithRaw=function(a,c){a.raw=c;return a};
+var cart_modal_template=function(a){return'<div class="modal__overlay" tabindex="-1" data-micromodal-close>\n                            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="cart-modal-title">\n                            <header class="modal__header">\n                                <div class="player-body">\n                                    <img src="https://crafatar.com/renders/body/?overlay" alt="avatar" width="92" />\n                                </div>\n                                <div class="cartModal-meta">\n                                    <div class="info">\n                                        <p class="decus-username">Carrito de \</p>\n                                        <div class="decus-cart-short"><p class="cart-short">'+a.total+
+" <small>EUR</small> ("+a.items.length+" Item"+(1<a.items.length?"s":"")+')</p>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class="cartModal-actions">\n                                    <a href="/checkout/basket/forget" class="log-out" rel="noopener noreferrer">   Salir <i class="fas fa-sign-out-alt" style="margin-left: 5px;"></i></a>\n                                </div>\n                            </header>\n                            <main class="modal__content" id="cart-modal-content">\n                                <ul class="cartModal-items">\n                                    '+
+function(){return a.items.reduce(function(a,b){return a+('<li class="cartModal-item">\n                                    <div class="left">\n                                        <div class="itemName">'+b.name+(1<b.quantity?'<small class="quantity">x'+b.quantity+"</small>":"")+'</div>\n                                    </div>\n                                    <div class="right">\n                                        <p class="price">'+b.price+' <small>EUR</small></p>\n                                        <div class="item-actions">\n                                            <a class="cartModal-remove" href="/checkout/basket"><i class="fas fa-edit"></i></a>\n                                        </div>\n                                    </div>\n                                </li>')},
+"")||'<li class="cartModal-item">Tu carrito está vacío.</li>'}()+'\n                                </ul>\n                            </main>\n                            <footer class="modal__footer">\n                                <span class="cartModal-continue-shopping" data-micromodal-close aria-label="Close this dialog window">Continuar comprando</span>\n                                '+(0<a.items.length?'<a href=/checkout/basket class="checkout-btn btn btn-primary">Finalizar compra <i class="fas fa-arrow-right"></i></a>':
+"")+"\n                            </footer>\n                            </div>\n                        </div>"},user_logged_content_template=function(a){return'<div class="decus-user-module-container"><div class="user"><div class="decus-avatar" style="height: 41px; width: 41px;"><img src="https://minotar.net/helm//41"/></div><div><p class="shopping-as">Comprando como</p><a href="/checkout/basket/forget" class="a-concealed toggle-tooltip" data-original-title="Log out"><p class="decus-username"></p></a></div></div><div class="cart-prompt" data-micromodal-trigger="cart-modal" data-badge="'+
+(0<a.items.length?a.items.length:"")+'"><i class="fas fa-shopping-cart"></i></div></div>'},user_not_logged_content_template=function(){return'<div class="decus-user-module-container not-logged">\n                        <div class="user">\n                            <div class="not-logged-placeholder"></div>\n                            <form method="POST" action="/login" accept-charset="UTF-8" class="user-login-form">\n                                <input name="mc_name" type="text" class="form-control" placeholder="Nick de MC" required />\n                                <button type="submit" class="cartModal-submit"><i class="fas fa-sign-in-alt"></i></button>\n                            </form>\n                        </div>\n                    </div>'}();
+basketFetch.then(function(a){userModuleSetup(basket,ign);cartModuleSetup(basket,ign)});function cartModuleSetup(a,c){console.log(c);var b=document.querySelector("#cart-modal");c&&(b.appendChild(htmlToElement(cart_modal_template(a,c))),1>a.items.length&&b.classList.add("decus-cart-empty"))}
+function userModuleSetup(a,c){var b=document.querySelector(".decus-user-module .loader");fade(b,"out",{duration:"100ms",delay:".1s",callback:function(b){var d=document.querySelector(".decus-user-module");"fadeOut"==b.animationName&&(this.parentNode.removeChild(this),d.classList.contains("loading")&&d.classList.remove("loading"),c?d.appendChild(htmlToElement(user_logged_content_template(a,c))):d.appendChild(htmlToElement(user_not_logged_content_template)),fade(document.querySelector(".decus-user-module-container"),
+"in",{duration:"90ms",delay:".2s"}),document.querySelector("[data-micromodal-trigger='cart-modal']").addEventListener("click",function(){MicroModal.show("cart-modal",modalConfig)}))}})};
+        </script>
+    </div>
+
+    <script src="../js/tienda/jquery.min.js" data-no-instant=""></script>
+    <script src="../js/tienda/bootstrap.min.js" data-no-instant=""></script>
+    <script src="../js/tienda/store.js" data-no-instant=""></script>
+
+    <!-- footer -->
+    <footer id="footer">
+        <div class="upper-container">
+            <div class="upper">
+                <div class="info">
+                    <p class="main">Entra ahora en</p><a href="https://discord.gg/5Ha2D33hbA" class="play play-clip btn toggle-tooltip" data-clipboard-text="mc.hydracraft.es" data-original-title="Copy IP">discord.gg/5Ha2D33hbA</a>
+                    <p>Roody es una comunidad de programadores en la cual contamos con distintos tipos de programación: JS, html, css...</p>
+                </div>
+        
+                <a href="#"><img src="../images/vlf8lpi5qy7co1klozke-1.png"></a>
+            </div>
+        </div>
+        
+        <div class="lower-container">
+            <div class="lower">
+                <div class="copyright">
+                    <p>© Copyright © 2022 Roody. Todos los derechos reservados.</p>
+                    <div class="footer-extra-copyright">
+                                           
+                                        </div>
+                </div>
+                <nav class="footer-nav">
+                    <ul>
+                       
+                        <li><a class="a-concealed" href="#">Términos y Condiciones</a></li>
+                        <li><a class="a-concealed" href="#">Política de Privacidad</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>    
+        <div class="modal micromodal-slide" id="cart-modal" aria-hidden="true"></div>
+        <div class="modal micromodal-slide" id="ip-modal" aria-hidden="true">
+            <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+                <div class="modal__container text-center" role="dialog" aria-modal="true" aria-labelledby="ip-modal-title">
+                    <header class="modal__header">
+                        <h4 class="modal__title" id="ip-modal-title">
+                            IP del servidor copiada
+                        </h4>
+                    </header>
+                    <main class="modal__content" id="ip-modal-content">
+                        <p>
+                            ¡Esperamos verte pronto online!
+                        </p>
+                    </main>
+                    <footer class="modal__footer">
+                        <button type="button" class="modal__btn btn btn-default" data-micromodal-close="">¡Ir a jugar!</button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        
+        <div id="loader-overlay"><div class="loader"></div></div>
+    
+    <script>
+        // Decus
+
+        //players/members
+        $(function() {
+            getMCPlayers("mc.hydracraft.es", document.querySelector("#mc-count"));
+            getDiscordMembers("806168106451992608", document.querySelector("#discord-count"));
+        });
+        
+        function getMCPlayers(ip, element) {
+            fetch(`https://mc-api.net/v3/server/ping/${ip}`)
+            .then(res => res.json())
+            .then(data => element.innerHTML = data["players"]["online"])
+        }
+        
+        function getDiscordMembers(id, element) {
+            $.get(`https://discordapp.com/api/guilds/${id}/embed.json`, function (data) {
+                element.innerHTML = data["presence_count"];
+            });
+        }
+        	
+        // mobile nav
+        const nav = document.querySelector("#header nav");
+        const icon = document.querySelector(".decus-mobile-menu");
+        
+        icon.addEventListener("click", () => {
+            if(nav.getAttribute("data-mobile") === "true") {
+                nav.setAttribute("data-mobile", "false");
+                document.body.className = '';
+            } else {
+                nav.setAttribute("data-mobile", "true");
+                document.body.className = 'is-modalOpen';
+            }
+        });
+    
+        // custom modals
+        $(".toggle-modal").unbind("click");
+        
+        let ipCopy = new ClipboardJS('.play-clip');
+        	
+        ipCopy.on("success", function(e) {
+        	MicroModal.show("ip-modal", modalConfig);
+        });
+
+        
+        MicroModal.init(modalConfig);
+    </script>
+
+</body>
+</html>
