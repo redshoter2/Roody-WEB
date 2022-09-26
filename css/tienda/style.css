@@ -64,7 +64,7 @@ body {
     font-family: var(--fontFamily);
     line-height: 1.5;
     color: var(--textColor);
-    background-image: linear-gradient(to top, #000000 0%, #b2bd18 100%);;
+    background-image: linear-gradient(to top, #000000 0%, #00b7ff 100%);;
     font-size: var(--fontSizeNormal);
     padding: 0 !important;
     margin: 0 !important;
