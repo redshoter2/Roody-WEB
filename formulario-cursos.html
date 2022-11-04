@@ -1,0 +1,304 @@
+<link rel="icon" href="./images/roody.png">
+<title>Formulario Cursos</title>
+<link rel="stylesheet" href="./css/tienda/bootstrap.min.css">
+<link rel="stylesheet" href="./css/tienda/lumen.min.css">
+<link rel="stylesheet" href="./css/tienda/store.min.css">
+<link href="./css/tienda/google-1.css" rel="stylesheet">
+<script src="./js/tienda/micromodal.min.js" integrity="sha256-PqiFpvu2HsnOnyZqaH8tYA9wJrlyxK4nNR7sPpzzev4=" crossorigin="anonymous"></script>
+<script src="./js/tienda/clipboard.min.js"></script>
+<script src="./js/tienda/jquery.min.js" data-no-instant=""></script>
+<script src="./js/tienda/bootstrap.min.js" data-no-instant=""></script>
+<script src="./js/tienda/store.js" data-no-instant=""></script>
+
+<link rel="stylesheet" href="../css/web/all.min.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous">
+<link rel="stylesheet" href="../css/tienda/style.css">
+
+<script src="https://kit.fontawesome.com/db3e18025d.js" crossorigin="anonymous"></script>
+<nav data-mobile="false">
+    <div class="decus-mobile-menu-wrapper">
+        <div class="decus-mobile-menu">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    </div>
+
+    <div class="nav-middle">
+        <div class="left">
+            <a class="item" href="./index.html">Inicio</a>
+            <a class="item" href="./foro.html">Foro</a>
+        </div>
+        <div class="storeBtn-container">
+            <a class="item highlight" href="./tienda.html">TIENDA</a>
+        </div>
+        <div class="right">
+            <a class="item" href="./becas.html">Becas</a>
+            <a class="item" href="./staff-apply.html">Staff Apply</a>
+            <a class="nav-link active" href="./staff-apply.html">Cursos</a>
+        </div>
+    </div>
+
+    <div class="nav-right"></div>
+</nav>
+<html>
+  <head>
+    
+    <style>
+    input:required {
+      border-color: yellow;
+        border-width: 6rem;
+    }
+    input:empty {
+      border-color: gray;
+      border-width: 1px;
+    }
+      input:invalid {
+        border-color: red;
+        border-width: 1px;
+      }
+     input:valid {
+      border-color: hsl(120, 76%, 50%);
+      border-width: 1px;
+    }
+    textarea:empty {
+      border-color: gray;
+      border-width: 1px;
+    }
+    textarea:invalid {
+      border-color: red;
+      border-width: 1px;
+    }
+    textarea:valid {
+      border-color: hsl(120, 76%, 50%);
+      border-width: 1px;
+    }
+    .button-send {
+      margin-left: 45%;
+      margin-right: 65%;
+    }
+    .boton {
+        background-color: #f1c232; 
+        color: #000;
+        border-radius: 15px;
+        border-color: transparent;
+        cursor: pointer;
+    }
+    .boton:hover {
+      outline: none;
+      box-shadow: 0 0 0 2px limegreen;
+      background-color: limegreen;
+        color: #000;
+    }
+    ::-webkit-scrollbar {
+    width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+    background: #40444b;
+    box-shadow: inset 0 0 5px #40444b;
+    border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: #f1c232;
+    border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #40444b;
+    }
+    ::placeholder {
+    color: #fff;
+    }
+    a:link {
+    color: #f1c232;
+    }
+
+    /* visited link */
+    a:visited {
+    color: green;
+    }
+
+    /* mouse over link */
+    a:hover {
+    color: hotpink;
+    }
+
+    /* selected link */
+    a:active {
+    color: blue;
+    }  
+    .alert {
+  padding: 20px;
+  background-color: red;
+  color: white;
+  display: none;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+.alertSuccess {
+  padding: 20px;
+  background-color: #20CB35;
+  color: white;
+  display: none;
+}
+.alertError {
+  padding: 20px;
+  background-color: #E11D1E;
+  color: white;
+  display: none;
+}
+    .closebtnSuccess {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtnSuccess:hover {
+  color: black;
+}
+.closebtnError {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtnError:hover {
+  color: black;
+}
+    
+        </style>
+        
+<!-- Chatra {literal} -->
+<script>
+    (function(d, w, c) {
+        w.ChatraID = 'LgfQ8kzYadxp7jAcq';
+        var s = d.createElement('script');
+        w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        s.async = true;
+        s.src = 'https://call.chatra.io/chatra.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+</script>
+<!-- /Chatra {/literal} -->
+    <!-- Bootstrap CSS #1e2124-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  </head>
+  <body style= "background: #1e2124;" class="container mt-5">
+    <form name= "inscription" onsubmit="sendInscription(event)">
+      <div class="mb-3">
+        <label for="emailInput" class="form-label" style="color: #f1c232; ">Correo Electronico</label>
+        <input type="email" class="form-control" id="emailInput" maxlength="500" placeholder="ejemplo@roody.xyz" style= "color: #fff; background-color: #40444b; "required>
+      </div>
+      <div class="mb-3">
+        <label for="userName" class="form-label"style="color: #f1c232" >Nombre en Discord</label>
+        <textarea class="form-control" id="userName" rows="1" maxlength="30" placeholder="User#0000" style= "color: #fff; background-color: #40444b;" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="constanciaEstudios" class="form-label" style="color: #f1c232; ">Tienes conocimientos en Discord.JS?</label>
+        <span style= "color: #fff; font-weight: 50">| Respuestas de Sí o No.</span>
+        <input class="form-control" id="constanciaEstudios" placeholder="Sí, se algo - No, no se nada" name= "constanciaEstudios" minLenght="62" maxLength="500" style= "color: #fff; background-color: #40444b;"required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" style="color: #15ff00">Informacion adicional:</label>
+      </div>
+      <div class="mb-3">
+        <label for="realname" class="form-label" style="color: #f1c232">Nombre real</label>
+        <input class="form-control" type="text" id="realname" name= "realname"  maxLength="100" style= "color: #fff; background-color: #40444b;"required>
+      </div>
+      <div class="mb-3">
+        <label for="edad" class="form-label" style="color: #f1c232">Edad</label>
+        <input class="form-control" type="number" id="edad" name= "edad"  minLength="2"maxLength="2" style= "color: #fff; background-color: #40444b;"required>
+      </div>
+   
+      <div class= "button-send">
+     
+      <button type="submit" class="boton">Enviar</button>
+      </div>
+      
+      <br></br>
+      <div class="alert">
+        <span class="closebtn" id="alert"onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Cuidado !</strong> Solo se admiten documentos PDF.
+      </div>
+      <div class="alertError"> 
+        <span class="closebtnError" id="alertError" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Error !</strong> Intentalo de nuevo o Ingresa a la comunidad de Discord para mas información. 
+      </div>
+      <div class="alertSuccess"> 
+        <span class="closebtnSuccess" id="alertSuccess" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Finalizado !</strong> Tu solicitud para entrar en el Programa "Roody Beca" a sido enviada.
+      </div>
+    </form>
+    <script>
+      async function sendInscription(ev) {
+        ev.preventDefault();
+        const userEmail = document.getElementById('emailInput').value;
+        const userName = document.getElementById('userName').value;
+        const constanciaEstudios = document.getElementById('constanciaEstudios').value;
+        const realname = document.getElementById("realname").value;
+        const edad = document.getElementById("edad").value;
+        var frm = document.getElementsByName('inscription')[0];
+        const alertaError = document.getElementById('alertError');
+        const alertaSuccess = document.getElementById('alertSuccess');
+        const alertaPDF = document.getElementById('alert');
+        
+        async function sendIns1(){
+            const configBody = {
+          embeds: [{
+            title: 'Petición Curso™️',
+            fields: [
+                { name: 'Correo Electronico', value: `\`\`\`\u200B${userEmail}\`\`\`` },
+                { name: 'Nombre en Discord', value: `\`\`\`\u200B${userName}\`\`\`` },
+                { name: 'Conocimientos en Discord.JS', value: `\`\`\`\u200B${constanciaEstudios}\`\`\`` },
+                { name: 'Nombre Real', value: `\`\`\`\u200B${realname}\`\`\``, inline: true },
+                { name: 'Edad', value: `\`\`\`\u200B${edad}\`\`\``, inline: true },
+            ],
+            color: 0xF1C232,
+          }],
+        };
+        const configBots = 'https://discord.com/api/webhooks/982354766657118268/ykqNY3hicW271QqZtJMxZ80c3MERCRnqOHpmMFogukHoUfT1YQQTnhblMT16qHGbmg5E';
+        const response = await fetch(configBots, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(configBody),
+        }).then(frm.reset());
+        
+        if (response.ok) {
+          
+          alertaSuccess.parentElement.style.display = 'block';        
+        } else {
+          
+          alertaError.parentElement.style.display = "block";
+        }
+          };
+          sendIns1();
+      }
+    </script>
+  </body>
+</html>
