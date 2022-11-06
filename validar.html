@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Certificados de Roody</title>
+
+		<style>
+      * {
+        background-color: #1e2124;
+        color: #fff;
+      }
+			html {
+				font-family: Roboto, sans-serif;
+			}
+
+			h1 {
+				text-align: center;
+			}
+
+			#form-box {
+				margin: 30px auto;
+			}
+      #form-box p{
+        text-align: center;
+      }
+			input[type='search'] {
+				margin: auto;
+				width: 80%;
+				display: block;
+				padding: 15px;
+				font-size: 20px;
+			}
+
+			.title {
+				color: #0f6eef;
+				text-align: center;
+				font-weight: bold;
+			}
+
+			.title a {
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.description {
+				padding: 1px;
+				color: gray;
+			}
+
+			#results {
+				display: flex;
+				flex-flow: wrap;
+				align-content: center;
+				justify-content: center;
+			}
+
+			.post {
+				margin: 5px;
+				width: 400px;
+				border-radius: 5px;
+				border: 1px solid #8888;
+			}
+			.post:hover {
+				background: #d8d8d8;
+			}
+
+			.cover_image {
+				height: 150px;
+				width: 100%;
+			}
+
+			@media (max-width: 600px) {
+				input[type='search'] {
+					width: 100%;
+				}
+
+				.post {
+					padding: 5px;
+				}
+			}
+      .cursos {
+        margin-left: calc(-100px);
+        color: #fff;
+      }
+      .certificado {
+        max-width: 600px;
+        max-height: 560px;
+      }
+
+		</style>
+	</head>
+	<body>
+		<div id="form-box">
+      <h1>Valida el certificado aquí</h1>
+			<input type="search"placeholder="00000000" />
+		</div>
+		<div id="results"></div>
+	</body>
+</html>
+<script
+	src="https://cdn.jsdelivr.net/npm/js-search@2.0.0/dist/umd/js-search.min.js"
+	integrity="sha256-LD9UsSATk+xTzAbk8nD2gA2bjHKvetXtCMDAFkM2K5Q="
+	crossorigin="anonymous"
+></script>
+<script>
+	const get_data = async () => {
+		let json = // 20220615151509
+// https://dev.to/api/articles?per_page=900
+[
+{
+    
+    "id": '00000001',
+    "name": "VenQui#6625",
+    "description": "Participante casual",
+    "img": "https://media.discordapp.net/attachments/988832237317394452/989953844811268116/5dc60b94357d243fbcccb293e76aacaa.png",
+    "banner": "https://singlecolorimage.com/get/4c68b0/450x110",
+    "certificados": [
+      "https://media.discordapp.net/attachments/988832237317394452/989954661563908126/VenQuiCertificado.png"
+    ],
+    "cursos": [
+        "Discord Bot Junior - 90%"
+    ]
+  }
+]
+		return json;
+	};
+
+	window.addEventListener('load', () => {
+		const articles = get_data().then(async (data) => {
+			const search = new JsSearch.Search('id');
+      search.addIndex('id');
+			search.addDocuments(data);
+
+			document.querySelector("input[type='search']").addEventListener('input', (event) => {
+				let value = event.target.value;
+				let results = search.search(value);
+
+				let html = '';
+				results.forEach((res) => {
+
+          let cursos = res.cursos.join('<hr style="height:1px; visibility:hidden;" />');
+          let certificados = res.certificados.join('<hr style="height:1px; visibility:hidden;" />');
+					let div = `
+          <img class= "certificado" src="${certificados}" alt ="${cursos}">
+          `;
+					html += div;
+				});
+				document.querySelector('#results').innerHTML = html;
+			});
+		});
+	});
+</script>
